@@ -62,7 +62,6 @@ public class AddCustomerServlet extends HttpServlet {
 			e.printStackTrace();
 		}
 		
-		
 	}
 
 	public void doPost(HttpServletRequest request, HttpServletResponse response)
@@ -72,11 +71,3 @@ public class AddCustomerServlet extends HttpServlet {
 	}
 
 }
-
-
-
-
-
-
-
-

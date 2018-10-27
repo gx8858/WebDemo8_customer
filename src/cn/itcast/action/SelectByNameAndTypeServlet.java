@@ -35,6 +35,7 @@ public class SelectByNameAndTypeServlet extends HttpServlet {
 		
 		// 存到域中
 		request.setAttribute("cList", cList);
+		
 		// 转发
 		request.getRequestDispatcher("/pages/list.jsp").forward(request, response);
 	}

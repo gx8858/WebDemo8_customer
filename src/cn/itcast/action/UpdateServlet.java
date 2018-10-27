@@ -18,7 +18,6 @@ import cn.itcast.vo.Customer;
 /**
  * 修改用户的信息
  * @author Administrator
- *
  */
 public class UpdateServlet extends HttpServlet {
 
@@ -52,10 +51,10 @@ public class UpdateServlet extends HttpServlet {
 			// 设置爱好
 			c.setLove(love);
 			
-			// 添加客户
+			// 修改客户
 			cs.updateCustomer(c);
 			
-			// 如果添加成功，跳转到列表页面
+			// 如果修改成功，跳转到列表页面
 			response.sendRedirect(request.getContextPath()+"/listCustomer");
 			
 		} catch (IllegalAccessException e) {

@@ -19,9 +19,9 @@ public class CustomerService {
 	 * @param type
 	 * @return
 	 */
-	public List<Customer> findAllByName(String username,String type){
+	public List<Customer> findAllByNameAndType(String username,String type){
 		CustomerDao dao = new CustomerDao();
-		return dao.findAllByName(username,type);
+		return dao.findAllByNameAndType(username,type);
 	}
 	
 	
@@ -67,6 +67,11 @@ public class CustomerService {
 	public Customer findById(String id){
 		CustomerDao dao = new CustomerDao();
 		return dao.findById(id);
+	}
+	
+	public void deleteById(String id) {
+		CustomerDao dao = new CustomerDao();
+		dao.delete(id);
 	}
 
 }

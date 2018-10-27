@@ -5,8 +5,18 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Insert title here</title>
+<title>客户信息展示</title>
 </head>
+
+<script type="text/javascript">  
+	function confirmDel(param){
+		//debugger;
+		if(window.confirm("您确定要删除该条信息吗？")){
+			document.location = "delete?id=" + param;
+		}
+	}
+</script>  
+
 <body>
 
 <form action="${ pageContext.request.contextPath }/selectByNameAndType" method="post">
@@ -59,7 +69,8 @@
 			<td>
 				<a href="${ pageContext.request.contextPath }/initupdate?id=${ c.id }">编辑</a>
 				|
-				<a href="#">删除</a>
+				<a href="#" onclick="confirmDel('${ c.id }')">删除</a>
+				<!-- <a href="${ pageContext.request.contextPath }/delete?id=${ c.id }"">删除</a> -->
 			</td>
 		</tr>
 	</c:forEach>

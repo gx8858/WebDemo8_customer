@@ -13,7 +13,6 @@ import cn.itcast.vo.Customer;
 /**
  * 跳转到修改的页面
  * @author Administrator
- *
  */
 public class InitupdateServlet extends HttpServlet {
 

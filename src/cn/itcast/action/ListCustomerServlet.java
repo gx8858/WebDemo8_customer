@@ -14,7 +14,6 @@ import cn.itcast.vo.Customer;
 /**
  * 查询所有用户的信息
  * @author Administrator
- *
  */
 public class ListCustomerServlet extends HttpServlet {
 

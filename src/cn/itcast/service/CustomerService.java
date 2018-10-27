@@ -1,0 +1,85 @@
+package cn.itcast.service;
+
+import java.util.List;
+
+import cn.itcast.dao.CustomerDao;
+import cn.itcast.utils.UUIDUtil;
+import cn.itcast.vo.Customer;
+
+/**
+ * 客户的业务层
+ * @author Administrator
+ *
+ */
+public class CustomerService {
+	
+	/**
+	 * 通过用户名或者类型查询所有的用户信息
+	 * @param username
+	 * @param type
+	 * @return
+	 */
+	public List<Customer> findAllByName(String username,String type){
+		CustomerDao dao = new CustomerDao();
+		return dao.findAllByName(username,type);
+	}
+	
+	
+	/**
+	 * 修改用户的信息
+	 * @param c
+	 */
+	public void updateCustomer(Customer c){
+		CustomerDao dao = new CustomerDao();
+		dao.update(c);
+	}
+	
+	
+	/**
+	 * 添加客户
+	 * @param c
+	 */
+	public void addCustomer(Customer c){
+		// 有一点业务
+		// 自己持久主键的内容
+		String id = UUIDUtil.getUUID();
+		c.setId(id);
+		
+		CustomerDao dao = new CustomerDao();
+		// 添加客户的方法
+		dao.save(c);
+	}
+	
+	/**
+	 * 查询所有用户信息
+	 * @return
+	 */
+	public List<Customer> findAll(){
+		CustomerDao dao = new CustomerDao();
+		return dao.findAll();
+	}
+	
+	/**
+	 * 通过id查询客户的信息
+	 * @param id
+	 * @return
+	 */
+	public Customer findById(String id){
+		CustomerDao dao = new CustomerDao();
+		return dao.findById(id);
+	}
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+

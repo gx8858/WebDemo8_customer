@@ -94,6 +94,21 @@ public class CustomerDao {
 			throw new RuntimeException("修改用户信息报错啦！！");
 		}
 	}
+	
+	/**
+	 * 删除用户的信息
+	 * @param c
+	 */
+	public void delete(String id) {
+		QueryRunner runner = new QueryRunner(MyJdbcUtil.getDataSource());
+		try {
+			String sql = "delete from t_customer where id = ?";
+			runner.update(sql, id);
+		} catch (SQLException e) {
+			e.printStackTrace();
+			throw new RuntimeException("删除用户信息报错啦！！");
+		}
+	}
 
 	
 	/**
@@ -102,7 +117,7 @@ public class CustomerDao {
 	 * @param type
 	 * @return
 	 */
-	public List<Customer> findAllByName(String username, String type) {
+	public List<Customer> findAllByNameAndType(String username, String type) {
 		QueryRunner runner = new QueryRunner(MyJdbcUtil.getDataSource());
 		try {
 			// SQL语句

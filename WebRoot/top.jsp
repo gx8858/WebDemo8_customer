@@ -10,6 +10,7 @@
 
 <div align="center">
 	<h3>客户管理平台</h3>
+	
 	<h3><a href="${ pageContext.request.contextPath }/pages/add.jsp" target="main">添加客户</a> 
 		| 	
 		<a href="${ pageContext.request.contextPath }/listCustomer" target="main">查询所有客户</a></h3>

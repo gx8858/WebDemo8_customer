@@ -7,7 +7,7 @@ import org.junit.Test;
 public class UUIDUtil {
 	
 	/**
-	 * 获取唯一的字符串
+	 * UUID获取唯一的字符串
 	 * @return
 	 */
 	public static String getUUID(){

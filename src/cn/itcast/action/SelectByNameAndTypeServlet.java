@@ -31,9 +31,9 @@ public class SelectByNameAndTypeServlet extends HttpServlet {
 		
 		// 处理数据
 		CustomerService cs = new CustomerService();
-		List<Customer> cList = cs.findAllByName(username, type);
+		List<Customer> cList = cs.findAllByNameAndType(username, type);
 		
-		// 域中国
+		// 存到域中
 		request.setAttribute("cList", cList);
 		// 转发
 		request.getRequestDispatcher("/pages/list.jsp").forward(request, response);

@@ -5,6 +5,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>添加客户信息</title>
+<script type="text/javascript" src="${ pageContext.request.contextPath }/js/My97DatePicker/WdatePicker.js"></script>
 </head>
 <body>
 
@@ -26,7 +27,7 @@
 		<tr>
 			<td>生日</td>
 			<td>
-				<input type="text" name="birthday" />
+				<input type="text" name="birthday" readonly="readonly" onclick="WdatePicker({dateFmt:'yyyy-MM-dd'})"/>
 			</td>
 		</tr>
 		<tr>

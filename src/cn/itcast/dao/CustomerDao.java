@@ -97,7 +97,7 @@ public class CustomerDao {
 	
 	/**
 	 * 删除用户的信息
-	 * @param c
+	 * @param id
 	 */
 	public void delete(String id) {
 		QueryRunner runner = new QueryRunner(MyJdbcUtil.getDataSource());

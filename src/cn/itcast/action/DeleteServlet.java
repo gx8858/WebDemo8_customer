@@ -19,10 +19,21 @@ public class DeleteServlet extends HttpServlet {
 	@Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
+		
+		/**
+		 * 接收id值
+		 * 处理数据 调用业务类
+		 * 显示数据
+		 */
 		String id = request.getParameter("id");
+		// 调用业务类
 		CustomerService cs = new CustomerService();
 		cs.deleteById(id);
-		request.getRequestDispatcher("/pages/list.jsp").forward(request, response);
+		// 重定向到查询所有用户列表的Servlet程序
+		response.sendRedirect(request.getContextPath()+"/listCustomer");
+		
+		// 或者用转发
+//		 request.getRequestDispatcher("/listCustomer").forward(request, response);
 	}
 
 	@Override

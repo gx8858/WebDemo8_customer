@@ -29,11 +29,14 @@
     <servlet-name>SelectByNameAndTypeServlet</servlet-name>
     <servlet-class>cn.itcast.action.SelectByNameAndTypeServlet</servlet-class>
   </servlet>
-
-
-
-
-
+  <servlet>
+  	<servlet-name>deleteServlet</servlet-name>
+  	<servlet-class>cn.itcast.action.DeleteServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>deleteServlet</servlet-name>
+    <url-pattern>/delete</url-pattern>
+  </servlet-mapping>
   <servlet-mapping>
     <servlet-name>AddCustomerServlet</servlet-name>
     <url-pattern>/addCustomer</url-pattern>

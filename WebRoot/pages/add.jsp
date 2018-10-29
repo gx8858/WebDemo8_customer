@@ -27,7 +27,7 @@
 		<tr>
 			<td>生日</td>
 			<td>
-				<input type="text" name="birthday" readonly="readonly" onclick="WdatePicker({dateFmt:'yyyy-MM-dd'})"/>
+				<input class="Wdate" type="text" name="birthday" readonly="readonly" onclick="WdatePicker({dateFmt:'yyyy-MM-dd'})"/>
 			</td>
 		</tr>
 		<tr>

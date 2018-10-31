@@ -33,6 +33,15 @@
   	<servlet-name>deleteServlet</servlet-name>
   	<servlet-class>cn.itcast.action.DeleteServlet</servlet-class>
   </servlet>
+  <servlet>
+    <servlet-name>ListCustomerByPageServlet</servlet-name>
+    <servlet-class>cn.itcast.action.ListCustomerByPageServlet</servlet-class>
+  </servlet>
+  <servlet>
+    <servlet-name>ListConditionByPageServlet</servlet-name>
+    <servlet-class>cn.itcast.action.ListConditionByPageServlet</servlet-class>
+  </servlet>
+  
   <servlet-mapping>
     <servlet-name>deleteServlet</servlet-name>
     <url-pattern>/delete</url-pattern>
@@ -57,4 +66,13 @@
     <servlet-name>SelectByNameAndTypeServlet</servlet-name>
     <url-pattern>/selectByNameAndType</url-pattern>
   </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>ListCustomerByPageServlet</servlet-name>
+    <url-pattern>/listCustomerByPage</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>ListConditionByPageServlet</servlet-name>
+    <url-pattern>/listConditionByPage</url-pattern>
+  </servlet-mapping>
+  
 </web-app>

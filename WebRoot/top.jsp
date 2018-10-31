@@ -13,7 +13,13 @@
 	
 	<h3><a href="${ pageContext.request.contextPath }/pages/add.jsp" target="main">添加客户</a> 
 		| 	
-		<a href="${ pageContext.request.contextPath }/listCustomer" target="main">查询所有客户</a></h3>
+		<a href="${ pageContext.request.contextPath }/listCustomer" target="main">查询所有客户</a>
+		|
+		<a href="${ pageContext.request.contextPath }/listCustomerByPage" target="main">查询所有客户（分页）</a>
+		| 	
+		<a href="${ pageContext.request.contextPath }/listConditionByPage" target="main">查询所有客户（条件和分页）</a>
+		
+	</h3>
 </div>
 
 </body>

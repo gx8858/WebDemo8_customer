@@ -5,6 +5,7 @@ import java.util.List;
 import cn.itcast.dao.CustomerDao;
 import cn.itcast.utils.UUIDUtil;
 import cn.itcast.vo.Customer;
+import cn.itcast.vo.PageBean;
 
 /**
  * 客户的业务层
@@ -12,6 +13,29 @@ import cn.itcast.vo.Customer;
  *
  */
 public class CustomerService {
+	
+	
+	/**
+	 * 分页查询（带条件）
+	 * @param pageCode
+	 * @param pageSize
+	 * @return
+	 */
+	public PageBean<Customer> findAllByConditionPage(String username,String type,int pageCode,int pageSize){
+		CustomerDao dao = new CustomerDao();
+		return dao.findAllByConditionPage(username,type,pageCode,pageSize);
+	}
+	
+	/**
+	 * 分页查询
+	 * @param pageCode
+	 * @param pageSize
+	 * @return
+	 */
+	public PageBean<Customer> findAllByPage(int pageCode,int pageSize){
+		CustomerDao dao = new CustomerDao();
+		return dao.findAllByPage(pageCode,pageSize);
+	}
 	
 	/**
 	 * 通过用户名或者类型查询所有的用户信息

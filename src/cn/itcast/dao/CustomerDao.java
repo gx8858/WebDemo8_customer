@@ -7,9 +7,11 @@ import java.util.List;
 import org.apache.commons.dbutils.QueryRunner;
 import org.apache.commons.dbutils.handlers.BeanHandler;
 import org.apache.commons.dbutils.handlers.BeanListHandler;
+import org.apache.commons.dbutils.handlers.ScalarHandler;
 
 import cn.itcast.utils.MyJdbcUtil;
 import cn.itcast.vo.Customer;
+import cn.itcast.vo.PageBean;
 
 /**
  * 客户的持久层
@@ -140,6 +142,116 @@ public class CustomerDao {
 			e.printStackTrace();
 			throw new RuntimeException("查询所有用户报错啦！！");
 		}
+	}
+	
+	/**
+	 * 查询所有的数据（总记录数，数据），
+	 * @param pageCode
+	 * @param pageSize
+	 * @return
+	 */
+	public PageBean<Customer> findAllByPage(int pageCode, int pageSize) {
+		// 创建PageBean
+		PageBean<Customer> page = new PageBean<Customer>();
+		// 设置当前页和每页显示的记录数
+		page.setPageCode(pageCode);
+		page.setPageSize(pageSize);
+		
+		// 查询总的记录数
+		QueryRunner runner = new QueryRunner(MyJdbcUtil.getDataSource());
+		try {
+			// 查询的总的记录数
+			long count = (Long) runner.query("select count(*) from t_customer", new ScalarHandler());
+			// 设置总记录数
+			page.setTotalCount((int)count);
+			
+			// 查询每页显示的数据beanList	limit关键字
+			// limit a , b;	a 从哪条记录开始  b 每页查询的记录条数
+			// a = （当前页 - 1—）* 每页查询的记录条数
+			// a = (pageCode - 1)*pageSize, b = pageSize
+			String selSql = "select * from t_customer limit ? , ?";
+			List<Customer> beanList = runner.query(selSql, new BeanListHandler<Customer>(Customer.class), (pageCode - 1)*pageSize,pageSize);
+			// 设置数据
+			page.setBeanList(beanList);
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+			throw new RuntimeException("查询所有数据（分页）报错啦！！");
+		}
+		
+		return page;
+	}
+
+
+	/**
+	 * 分页查询，带条件  拼接SQL语句
+	 * @param username
+	 * @param type
+	 * @param pageCode
+	 * @param pageSize
+	 * @return
+	 */
+	public PageBean<Customer> findAllByConditionPage(String username,
+			String type, int pageCode, int pageSize) {
+		// 创建PageBean
+		PageBean<Customer> page = new PageBean<Customer>();
+		// 设置当前页和每页显示的记录数
+		page.setPageCode(pageCode);
+		page.setPageSize(pageSize);
+		
+		/**
+		 * 带条件查询，SQL语句的后面拼接条
+		 * 拼接SQL语句后设置参数
+		 */
+		StringBuffer whereSb = new StringBuffer(" where 1 = 1 ");
+		List<Object> params = new ArrayList<Object>();
+		if(username != null && !username.trim().isEmpty()){
+			whereSb.append(" and username = ?");
+			params.add(username);
+		}
+		
+		if(type != null && !type.trim().isEmpty()){
+			whereSb.append(" and type = ?");
+			params.add(type);
+		}
+		
+		
+		// 查询总的记录数
+		QueryRunner runner = new QueryRunner(MyJdbcUtil.getDataSource());
+		try {
+			
+			StringBuffer countSb = new StringBuffer("select count(*) from t_customer ");
+			String countSql = countSb.append(whereSb).toString();
+			
+			// 查询的总的记录数
+			long count = (Long) runner.query(countSql, new ScalarHandler(),params.toArray());
+			// 设置总记录数
+			page.setTotalCount((int)count);
+			
+			// 查询每页显示的数据beanList	limit关键字
+			// limit a , b;	a 从哪条记录开始  b 每页查询的记录条数
+			// a = （当前页 - 1—）* 每页查询的记录条数
+			// a = (pageCode - 1)*pageSize, b = pageSize
+			
+			StringBuffer selSb = new StringBuffer("select * from t_customer ");
+			StringBuffer limitSb = new StringBuffer(" limit ? , ?");
+			String selSql = selSb.append(whereSb).append(limitSb).toString();
+			
+			// 给limit添加条件
+			params.add((pageCode - 1)*pageSize);
+			params.add(pageSize);
+			
+			// String selSql = "select * from t_customer limit ? , ?";
+			
+			List<Customer> beanList = runner.query(selSql, new BeanListHandler<Customer>(Customer.class), params.toArray());
+			// 设置数据
+			page.setBeanList(beanList);
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+			throw new RuntimeException("查询所有数据（分页）报错啦！！");
+		}
+		return page;
 	}
 
 }
